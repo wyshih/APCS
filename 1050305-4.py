@@ -65,7 +65,7 @@ if __name__ == '__main__':
     blood = [member() for i in range(0, n)]
     for i in range(0, n):
         blood[i].id = i
-    for i in range(0, n-1):
+    for i in range(0, n-1):             # input data and build the relation
         P, C = input().split(' ')
         P = int(P)
         C = int(C)
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     #    if max_layer < mem.layer:
     #        max_layer = mem.layer
     #print max_dist
-    for mem1 in blood:
+    for mem1 in blood:                  #calculate the distance between each two nodes and compare with the current longest distance
         for mem2 in blood:
             dist = mem1.cal_connections(mem2, blood)
             if dist > max_dist:
