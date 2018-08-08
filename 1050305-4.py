@@ -1,16 +1,16 @@
 class member():
     def __init__(self):
         self.id = -1
-        self.parent = -1
+        self.parent = -1   
         self.children = []
         self.layer = 1
-    def set_parent(self, p):
+    def set_parent(self, p):    # set parent
         self.parent = p
-    def add_children(self, c):
+    def add_children(self, c):  # set children
         self.children.append(c)
-    def add_layer(self, parent_layer):
+    def add_layer(self, parent_layer):  # calculate the layer of node
         self.layer = parent_layer + 1
-    def modified_connection(self, members):
+    def modified_connection(self, members):     # modify the layers of each node
         #print self.children
         if len(self.children) != 0:
             
@@ -18,15 +18,15 @@ class member():
                 members[child].add_layer(self.layer)
                 members[child].modified_connection(members)
     def cal_connections(self, comp, member):
-        if self.parent == comp.id or self.id == comp.parent:
+        if self.parent == comp.id or self.id == comp.parent:    # if one of each is the other parent, the distance is 1
             return 1
-        elif self.parent != comp.parent and self.parent != -1 and comp.parent != -1:
-            return member[self.parent].cal_connections(member[comp.parent], member) + 2
-        elif self.parent != comp.parent and self.parent == -1 and comp.parent != -1:
+        elif self.parent != comp.parent and self.parent != -1 and comp.parent != -1:        # if the parents of two nodes are different and both parents are not root
+            return member[self.parent].cal_connections(member[comp.parent], member) + 2     # distance is 2, and move to parent nodes
+        elif self.parent != comp.parent and self.parent == -1 and comp.parent != -1:        # if the parent of the other is root, move self node to parent node and distance add 1
             return self.cal_connections(member[comp.parent], member) + 1
-        elif self.parent != comp.parent and self.parent != -1 and comp.parent == -1:
+        elif self.parent != comp.parent and self.parent != -1 and comp.parent == -1:        # if self parent is root, move the other one and add 1 distance
             return member[self.parent].cal_connections(comp, member) + 1
-        elif self.parent == comp.parent and self.parent != -1 and comp.parent != -1:
+        elif self.parent == comp.parent and self.parent != -1 and comp.parent != -1:        # if both parents are the same but not root, return distance 2
             return 2
         else:
             return 0
