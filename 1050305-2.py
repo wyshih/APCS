@@ -1,4 +1,4 @@
-def turn(R, M, matrix):
+def turn(R, M, matrix):     #turn matrix
     result = [[0]*R for i in range(0, M)]
     #print result
     for i in range(0, R):
@@ -6,7 +6,16 @@ def turn(R, M, matrix):
             result[j][R-i-1] = matrix[i][j]
     #print result
     return result
+'''
+original    after turn      new index
 
+00 01       20 10 00         00 01 02
+10 11   ->  21 11 01   <-->  10 11 12
+20 21
+
+the original columns become row, and the order of original rows are reversed to become new columns
+
+'''
 def reverse(R, M, matrix):
     result = [[0]*M for i in range(0, R)]
     for i in range(0, R):
@@ -15,6 +24,15 @@ def reverse(R, M, matrix):
     #print result
     return result
 
+'''
+original    after reverse
+
+00 01       20 21       
+10 11   ->  10 11     
+20 21       00 01
+
+the columns are not changed, but the order of rows are reversed
+'''
 if __name__ == '__main__':
     R, M, C = input().split(' ')
     R = int(R)
