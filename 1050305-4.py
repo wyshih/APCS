@@ -30,7 +30,35 @@ class member():
             return 2
         else:
             return 0
-    
+'''
+parent is not root
+
+         /          /   \
+        P         P1     P2
+       / \       /        \  
+      /   \     /          \ 
+     1     2,  1            2
+
+parent is root
+
+        P         P1     
+       / \       /  \      
+      /   \     /    P2      
+     1     2,  1      \     
+                       2    
+
+one of nodes is the other's parent
+
+        1
+         \
+          \
+           2
+
+two nodes meet 
+
+        12    
+ 
+'''    
 if __name__ == '__main__':
     
     n = int(input())
